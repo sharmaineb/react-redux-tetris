@@ -5,7 +5,10 @@ export const gameSlice = createSlice({
     name: 'game',
     initialState: defaultState(),
     reducers: {
-      pause: () => {},
+      pause: (state) => {
+            state.isRunning = false
+            return state
+      },
       resume: () => {},
       moveLeft: (state) => {
         const { shape, grid, x, y, rotation } = state
