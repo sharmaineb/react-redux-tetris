@@ -187,3 +187,6 @@ export const gridDefault = () => {
         gameOver: false
       }
     }
+
+// Go to src/utils.js and set isRunning in defaultState to false. This should disable all of the buttons. 
+// Set it back to true when you're done.
