@@ -5,6 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* background-color: var(--color-2); */
 }
 
 code {
@@ -21,7 +22,7 @@ code {
   --border-right-color: rgba(0, 0, 0, 0.15);
   --border-bottom-color: rgba(0, 0, 0, 0.5);
 
-  /* Square Colors: background colors for the squares.*/
+  /* Square Colors: background colors for the squares. */
   --color-0: #eaeaea;
   --color-1: #ff6600;
   --color-2: #eec900;
@@ -80,14 +81,9 @@ code {
 
 /* Grid Square */
 .grid-square {
-  border-style: solid;
   width: var(--tile-size);
   height: var(--tile-size);
-  border-width: var(--border-width);
-  border-left-color: var(--border-left-color);
-  border-top-color: var(--border-top-color);
-  border-right-color: var(--border-right-color);
-  border-bottom-color: var(--border-bottom-color);
+  border-radius: 4px;
 }
 
 * {
@@ -97,67 +93,58 @@ code {
 .grid-board {
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--tile-size));
-  grid-gap: 0;
+  grid-gap: 1px; /* Add a gap! */
+  position: relative;
+  top: 25px;
   align-self: flex-start;
-  grid-area: c; /* Assign to grid area c */
+  grid-area: c;
 }
 
 /* Next Block */
 .next-block {
   display: grid;
   grid-template-columns: repeat(4, var(--tile-size));
-  align-self: flex-start;
-  grid-area: l; /* Grid area l left column */
+  grid-area: l;
+  align-self: flex-end;
+  position: relative;
+  top: 25px;
 }
 
-/* score-board */
-.score-board {
-  grid-area: r;
+/* Score Board Button and Control Button */
+.button {
+  display: block;
+  padding: 1em;
+  border: none;
 }
 
 /* Score Board */
-.score-board-button {
-  display: block;
-  padding: 1em;
-  border-width: 5px;
+.score-board {
+  grid-area: r;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Adjusting Button Colors */
+.button {
+  background-color: var(--color-0);
   border-top-color: var(--button-color-t);
   border-left-color: var(--button-color-l);
   border-right-color: var(--button-color-r);
   border-bottom-color: var(--button-color-b);
 }
 
-/* App */
-.App {
-  --col-side: calc(var(--tile-size) * 4);
-  --col-center: calc(var(--tile-size) * 10);
-  --grid-height: calc(var(--tile-size) * 18);
-
-  width: calc(var(--tile-size) * (4 + 1 + 10 + 1 + 4));
-  margin: auto;
-  display: grid;
-
-  grid-gap: var(--tile-size) var(--tile-size);
-  /* Defines three columns of `--col-side`, `--col-center`, and `--col-side` widths. */
-  grid-template-columns: var(--col-side) var(--col-center) var(--col-side);
-  /* Defines three rows of `100px`, `--grid-height`, and 100px. */
-  grid-template-rows: 100px var(--grid-height) 100px;
-
-  /* This defines the areas on the grid with names: 'h', 'l', 'c', 'r',
-  and 'b'. The '.' represents an empty cell on the grid. */
-  grid-template-areas: "h h h"
-                       "l c r"
-                       ". b .";
+/* Arrange Score Board Buttons to Fill Width */
+.score-board .button {
+  flex-grow: 1;
 }
 
-/* App-header */
-.App-header {
-  grid-area: h;
-}
-
-/* controls */
+/* Controls */
 .controls {
   grid-area: b;
   display: flex;
+  position: relative;
+  top: 255%;
+  align-items: flex-end;
   flex-direction: row;
 }
 
@@ -165,14 +152,11 @@ code {
 .control-button {
   --size: calc(var(--tile-size) * 2.5);
   width: var(--size);
+  font-size: 11px;
   height: var(--size);
   text-align: center;
   display: block;
   border-width: 5px;
-  border-top-color: var(--button-color-t);
-  border-left-color: var(--button-color-l);
-  border-right-color: var(--button-color-r);
-  border-bottom-color: var(--button-color-b);
 }
 
 /* Message Popup Styles */
@@ -189,4 +173,34 @@ code {
 
 .message-popup.hidden {
   display: none;
+}
+
+/* App */
+.App {
+  --col-side: calc(var(--tile-size) * 4);
+  --col-center: calc(var(--tile-size) * 10);
+  --grid-height: calc(var(--tile-size) * 4);
+
+  width: calc(var(--tile-size) * (4 + 1 + 10 + 1 + 4));
+  margin: auto;
+  display: grid;
+
+  grid-gap: var(--tile-size) var(--tile-size);
+  /* Defines three columns of `--col-side`, `--col-center`, and `--col-side` widths. */
+  grid-template-columns: var(--col-side) var(--col-center) var(--col-side);
+  /* Defines three rows of `100px`, `--grid-height`, and 100px. */
+  grid-template-rows: 120px var(--grid-height) 100px;
+
+  /* This defines the areas on the grid with names: 'h', 'l', 'c', 'r',
+  and 'b'. The '.' represents an empty cell on the grid. */
+  grid-template-areas: "h h h"
+                       "l c r"
+                       ". b .";
+}
+
+/* App-header */
+.App-header {
+  grid-area: h;
+  position: absolute;
+  width: 400px;
 }
