@@ -34,7 +34,8 @@ moveDown: (state) => {
     // If so move the block
     state.y = maybeY
     return state
-  }
+  },
+  restart: () => defaultState()
 
   // ==============EDIT BEGIN================
   // If not place the block
