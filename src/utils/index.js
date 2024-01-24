@@ -226,5 +226,29 @@ export const nextRotation = (shape, rotation) => {
     return true
   }
 
+  // Adds a current shape to the grid
+export const addBlockToGrid = (shape, grid, x, y, rotation) => {
+    // At this point the game is not over
+    let gameOver = false
+    const block = shapes[shape][rotation]
+    const newGrid = [ ...grid ]
+    for (let row = 0; row < block.length; row++) {
+      for (let col = 0; col < block[row].length; col++) {
+        if (block[row][col]) {
+          const yIndex = row + y
+          // If the yIndex is less than 0 part of the block
+          // is off the top of the screen and the game is over
+          if (yIndex < 0) {
+            gameOver = true
+          } else {
+            newGrid[row + y][col + x] = shape
+          }
+        }
+      }
+    }
+    // Return both the newGrid and the gameOver bool 
+    return { newGrid, gameOver }
+  }
+
 // Go to src/utils.js and set isRunning in defaultState to false. This should disable all of the buttons. 
 // Set it back to true when you're done.

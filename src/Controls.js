@@ -6,7 +6,7 @@ export default function Controls(props) {
   const dispatch = useDispatch();
   
   // Added speed here! 
-  const { isRunning, speed } = useSelector(state => state);
+  const { isRunning, speed, gameOver } = useSelector(state => state);
 
   // Set up the game timer
   const requestRef = useRef();
@@ -39,48 +39,40 @@ export default function Controls(props) {
   return (
     <div className="controls">
       {/* left */}
-      <button
-        disabled={!isRunning}
-        className="control-button"
-        onClick={(e) => {
-          dispatch(moveLeft());
-        }}
-      >
-        Left
-      </button>
+<button 
+  disabled={!isRunning || gameOver}
+  className="control-button" 
+  onClick={(e) => {
+    dispatch(moveLeft())
+  }
+}>Left</button>
 
-      {/* right */}
-      <button
-        disabled={!isRunning}
-        className="control-button"
-        onClick={(e) => {
-          dispatch(moveRight());
-        }}
-      >
-        Right
-      </button>
+{/* right */}
+<button 
+  disabled={!isRunning || gameOver}
+  className="control-button" 
+  onClick={(e) => {
+    dispatch(moveRight())
+  }
+}>Right</button>
 
-      {/* rotate */}
-      <button
-        disabled={!isRunning}
-        className="control-button"
-        onClick={(e) => {
-          dispatch(rotate());
-        }}
-      >
-        Rotate
-      </button>
+{/* rotate */}
+<button 
+  disabled={!isRunning || gameOver}
+  className="control-button" 
+  onClick={(e) => {
+    dispatch(rotate())
+  }
+}>Rotate</button>
 
-      {/* down */}
-      <button
-        disabled={!isRunning}
-        className="control-button"
-        onClick={(e) => {
-          dispatch(moveDown());
-        }}
-      >
-        Down
-      </button>
+{/* down */}
+<button 
+  disabled={!isRunning || gameOver}
+  className="control-button" 
+  onClick={(e) => {
+    dispatch(moveDown())
+  }
+}>Down</button>
     </div>
   );
 }
