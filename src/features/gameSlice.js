@@ -7,8 +7,20 @@ export const gameSlice = createSlice({
     reducers: {
       pause: () => {},
       resume: () => {},
-      moveLeft: () => {},
-      moveRight: () => {},
+      moveLeft: (state) => {
+        const { shape, grid, x, y, rotation } = state
+        if (canMoveTo(shape, grid, x - 1, y, rotation)) {
+          state.x = x - 1
+        }
+        return state
+      },
+      moveRight: (state) => {
+        const { shape, grid, x, y, rotation } = state
+        if (canMoveTo(shape, grid, x + 1, y, rotation)) {
+          state.x = x + 1
+        }
+        return state
+      },
       moveDown: () => {},
       rotate: (state) => {
         const { shape, grid, x, y, rotation } = state
