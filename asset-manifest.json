@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/sharmaineb/react-redux-tetris/static/css/main.24d3a88b.css",
+    "main.js": "/sharmaineb/react-redux-tetris/static/js/main.76621e39.js",
+    "index.html": "/sharmaineb/react-redux-tetris/index.html",
+    "main.24d3a88b.css.map": "/sharmaineb/react-redux-tetris/static/css/main.24d3a88b.css.map",
+    "main.76621e39.js.map": "/sharmaineb/react-redux-tetris/static/js/main.76621e39.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.24d3a88b.css",
+    "static/js/main.76621e39.js"
+  ]
+}
