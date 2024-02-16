@@ -1,11 +1,17 @@
-body {
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+html, body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: var(--color-2); */
+}
+
+body {
+  background-image: url('https://static.vecteezy.com/system/resources/previews/032/426/069/non_2x/generative-ai-cyberpunk-style-game-bar-or-cafe-night-scene-of-big-city-futuristic-nostalgic-80s-90s-neon-lights-vibrant-colorsrealistic-horizontal-free-photo.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 code {
@@ -14,39 +20,33 @@ code {
 }
 
 :root {
-  --bg-color: rgba(150, 150, 150, 1);
+  --bg-color: #E1E6FA;
 
-  /* Border Colors are all transparent colors. These will tint or shade the background color of the square. */
   --border-left-color: rgba(255, 255, 255, 0.20);
   --border-top-color: rgba(255, 255, 255, 0.33);
   --border-right-color: rgba(0, 0, 0, 0.15);
   --border-bottom-color: rgba(0, 0, 0, 0.5);
 
-  /* Square Colors: background colors for the squares. */
-  --color-0: #eaeaea;
-  --color-1: #ff6600;
-  --color-2: #eec900;
-  --color-3: #0000ff;
-  --color-4: #cc00ff;
-  --color-5: #00ff00;
-  --color-6: #66ccff;
-  --color-7: #ff0000;
+  --color-0: #FFE135; 
+  --color-1: #FF6E96; 
+  --color-2: #56A0D3; 
+  --color-3: #FF7F00; 
+  --color-4: #FFD700; 
+  --color-5: #8A2BE2; 
+  --color-6: #FFD700; 
+  --color-7: #FF0000; 
 
-  /* Button Colors */
   --button-color-t: rgba(200, 200, 200, 1);
   --button-color-r: rgba(150, 150, 150, 1);
   --button-color-b: rgba(120, 120, 120, 1);
   --button-color-l: rgba(222, 222, 222, 1);
 
-  /* Numbers define values that will be used throughout the CSS.
-  --tile-size: 20px for example will set the size of the grid squares. */
   --cols: 10;
   --rows: 18;
   --tile-size: 20px;
   --border-width: 5px;
 }
 
-/* Colors */
 .color-0 {
   background-color: var(--color-0);
 }
@@ -79,7 +79,6 @@ code {
   background-color: var(--color-7);
 }
 
-/* Grid Square */
 .grid-square {
   width: var(--tile-size);
   height: var(--tile-size);
@@ -93,14 +92,13 @@ code {
 .grid-board {
   display: grid;
   grid-template-columns: repeat(var(--cols), var(--tile-size));
-  grid-gap: 1px; /* Add a gap! */
-  position: relative;
-  top: 25px;
+  grid-gap: 0;
   align-self: flex-start;
   grid-area: c;
+  grid-gap: 1px;
+  margin-top: 10px;
 }
 
-/* Next Block */
 .next-block {
   display: grid;
   grid-template-columns: repeat(4, var(--tile-size));
@@ -110,21 +108,44 @@ code {
   top: 25px;
 }
 
-/* Score Board Button and Control Button */
 .button {
   display: block;
   padding: 1em;
   border: none;
 }
 
-/* Score Board */
 .score-board {
   grid-area: r;
   display: flex;
   flex-direction: column;
+  margin-top: 12px;
+  align-items: center; 
+  color: white;
+  margin-left: 23px;
+  font-size: 1em;
+  font-weight: bold;
+  font-family: 'Press Start 2P', sans-serif;
+  text-shadow: 1px 1px 1px black;
 }
 
-/* Adjusting Button Colors */
+.score-board-button {
+  display: inline-block; 
+  padding: 1em;
+  margin: 5px;
+  background-color: var(--color-0);
+  border: 2px solid var(--color-1); 
+  color: var(--color-1);
+  font-size: 1rem;
+  cursor: pointer; 
+  transition: background-color 0.3s, color 0.3s; 
+  text-decoration: none;
+}
+
+.score-board-button:hover {
+  background-color: var(--color-1); 
+  color: var(--color-0); 
+}
+
 .button {
   background-color: var(--color-0);
   border-top-color: var(--button-color-t);
@@ -133,12 +154,10 @@ code {
   border-bottom-color: var(--button-color-b);
 }
 
-/* Arrange Score Board Buttons to Fill Width */
 .score-board .button {
   flex-grow: 1;
 }
 
-/* Controls */
 .controls {
   grid-area: b;
   display: flex;
@@ -148,26 +167,55 @@ code {
   flex-direction: row;
 }
 
-/* Control Button */
 .control-button {
-  --size: calc(var(--tile-size) * 2.5);
+  --size: calc(var(--tile-size) * 3);
   width: var(--size);
-  font-size: 11px;
   height: var(--size);
-  text-align: center;
-  display: block;
-  border-width: 5px;
+  border-radius: 50%;
+  font-size: 9px;
+  font-weight: bold;
+  font-family: 'Press Start 2P', sans-serif;
+  text-shadow: 1px 1px 1px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  cursor: pointer;
+  margin-right: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to bottom right, #ff0066, #ff6600);
+  color: #fff;
+  border: 2px solid #fff;
 }
 
-/* Message Popup Styles */
+.control-button.control-rotate {
+  background: linear-gradient(to bottom right, #00ccff, #ff00ff);
+}
+
+.control-button.control-right {
+  background: linear-gradient(to bottom right, #ff9900, #ffff00);
+}
+
+.control-button.control-down {
+  background: linear-gradient(to bottom right, #00ffcc, #33cc33);
+}
+
+.control-button:hover {
+  filter: brightness(0.9);
+}
+
+
 .message-popup {
-  position: absolute;
+  position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  width: calc(var(--tile-size) * 10);
-  height: calc(var(--tile-size) * 10);
-  background-color: rgba(255, 255, 255, 0.5);
+  width: 70%;
+  max-width: 400px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
@@ -175,7 +223,6 @@ code {
   display: none;
 }
 
-/* App */
 .App {
   --col-side: calc(var(--tile-size) * 4);
   --col-center: calc(var(--tile-size) * 10);
@@ -186,21 +233,17 @@ code {
   display: grid;
 
   grid-gap: var(--tile-size) var(--tile-size);
-  /* Defines three columns of `--col-side`, `--col-center`, and `--col-side` widths. */
   grid-template-columns: var(--col-side) var(--col-center) var(--col-side);
-  /* Defines three rows of `100px`, `--grid-height`, and 100px. */
   grid-template-rows: 120px var(--grid-height) 100px;
-
-  /* This defines the areas on the grid with names: 'h', 'l', 'c', 'r',
-  and 'b'. The '.' represents an empty cell on the grid. */
   grid-template-areas: "h h h"
                        "l c r"
                        ". b .";
 }
 
-/* App-header */
 .App-header {
   grid-area: h;
   position: absolute;
   width: 400px;
+  left: 50%;
+  transform: translateX(-50%);
 }

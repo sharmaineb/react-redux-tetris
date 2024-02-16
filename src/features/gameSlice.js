@@ -1,8 +1,15 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { defaultState, nextRotation, canMoveTo, addBlockToGrid, randomShape, checkRows } from '../utils';
+import { createSlice } from "@reduxjs/toolkit";
+import {
+  defaultState,
+  nextRotation,
+  canMoveTo,
+  addBlockToGrid,
+  checkRows,
+  randomShape,
+} from "../utils";
 
 export const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState: defaultState(),
   reducers: {
     pause: (state) => {
@@ -49,6 +56,7 @@ export const gameSlice = createSlice({
       state.nextShape = randomShape();
 
       if (!canMoveTo(nextShape, newGrid, 0, 4, 0)) {
+        console.log("Game Should be over...");
         state.shape = 0;
         state.gameOver = true;
         return state;
@@ -71,12 +79,12 @@ export const gameSlice = createSlice({
 });
 
 export const {
+  pause,
+  resume,
   moveLeft,
   moveRight,
   moveDown,
   rotate,
-  pause,
-  resume,
   gameOver,
   restart,
 } = gameSlice.actions;
